@@ -2,9 +2,14 @@ package com.laowang.sptest.dao;
 
 import com.laowang.sptest.model.TbContent;
 import com.laowang.sptest.model.TbContentExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
+import java.util.List;
+
+@Service
+@Component
 public interface TbContentMapper {
     long countByExample(TbContentExample example);
 
