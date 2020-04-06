@@ -11,6 +11,7 @@ public class TestImpl implements Test {
     TbContentMapper tbContentMapper;
     public void save(String  query) {
         TbContent tb =new TbContent();
+        tb.setCategoryId("1");
         tb.setPic(query);
         tbContentMapper.insert(tb);
     }
