@@ -209,3 +209,22 @@ com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Colu
       ?, ?, ?, 
       ?, ?)
 2020-04-06 22:31:03.095 [http-nio-8881-exec-3] DEBUG com.alibaba.druid.filter.logging.Log4j2Filter.statementLog(Log4j2Filter.java:137) - {conn-10001, pstmt-20001} closed
+2020-04-06 22:32:18.686 [http-nio-8881-exec-1] DEBUG com.alibaba.druid.filter.logging.Log4j2Filter.statementLog(Log4j2Filter.java:137) - {conn-10001, pstmt-20000} created. insert into tb_content (id, category_id, title, 
+      sub_title, title_desc, url, 
+      pic, pic2, created, 
+      updated, content)
+    values (?, ?, ?, 
+      ?, ?, ?, 
+      ?, ?, ?, 
+      ?, ?)
+2020-04-06 22:32:18.695 [http-nio-8881-exec-1] DEBUG com.alibaba.druid.filter.logging.Log4j2Filter.statementLog(Log4j2Filter.java:137) - {conn-10001, pstmt-20000} Parameters : [null, 1, null, null, null, null, 1, null, null, null, null]
+2020-04-06 22:32:18.695 [http-nio-8881-exec-1] DEBUG com.alibaba.druid.filter.logging.Log4j2Filter.statementLog(Log4j2Filter.java:137) - {conn-10001, pstmt-20000} Types : [BIGINT, VARCHAR, VARCHAR, VARCHAR, VARCHAR, VARCHAR, VARCHAR, VARCHAR, TIMESTAMP, TIMESTAMP, OTHER]
+2020-04-06 22:32:18.699 [http-nio-8881-exec-1] DEBUG com.alibaba.druid.filter.logging.Log4j2Filter.statementLog(Log4j2Filter.java:137) - {conn-10001, pstmt-20000} executed. 7.1731 millis. insert into tb_content (id, category_id, title, 
+      sub_title, title_desc, url, 
+      pic, pic2, created, 
+      updated, content)
+    values (?, ?, ?, 
+      ?, ?, ?, 
+      ?, ?, ?, 
+      ?, ?)
+2020-04-06 22:32:18.700 [http-nio-8881-exec-1] DEBUG com.alibaba.druid.filter.logging.Log4j2Filter.statementLog(Log4j2Filter.java:137) - {conn-10001, pstmt-20000} closed

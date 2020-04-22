@@ -1,0 +1,445 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.laowang.sptest.dao.DataMapper">
+  <resultMap id="BaseResultMap" type="com.laowang.sptest.model.Data">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
+    <result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified" />
+    <result column="userid" jdbcType="INTEGER" property="userid" />
+    <result column="cpu" jdbcType="VARCHAR" property="cpu" />
+    <result column="memory" jdbcType="VARCHAR" property="memory" />
+    <result column="displayCard" jdbcType="VARCHAR" property="displaycard" />
+    <result column="mainBoard" jdbcType="VARCHAR" property="mainboard" />
+    <result column="productYear" jdbcType="VARCHAR" property="productyear" />
+    <result column="maxVersion" jdbcType="VARCHAR" property="maxversion" />
+    <result column="rayVersion" jdbcType="VARCHAR" property="rayversion" />
+    <result column="maxRendererTime" jdbcType="TIME" property="maxrenderertime" />
+    <result column="maxCreateTime" jdbcType="TIME" property="maxcreatetime" />
+    <result column="aeVersion" jdbcType="VARCHAR" property="aeversion" />
+    <result column="aeOutputTime" jdbcType="TIME" property="aeoutputtime" />
+    <result column="extendinfo" jdbcType="LONGVARCHAR" property="extendinfo" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, gmt_create, gmt_modified, userid, cpu, memory, displayCard, mainBoard, productYear, 
+    maxVersion, rayVersion, maxRendererTime, maxCreateTime, aeVersion, aeOutputTime
+  </sql>
+  <sql id="Blob_Column_List">
+    extendinfo
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="com.laowang.sptest.model.DataExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from data
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" parameterType="com.laowang.sptest.model.DataExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from data
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from data
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from data
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.laowang.sptest.model.DataExample">
+    delete from data
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.laowang.sptest.model.Data">
+    insert into data (id, gmt_create, gmt_modified, 
+      userid, cpu, memory, 
+      displayCard, mainBoard, productYear, 
+      maxVersion, rayVersion, maxRendererTime, 
+      maxCreateTime, aeVersion, aeOutputTime, 
+      extendinfo)
+    values (#{id,jdbcType=INTEGER}, #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP}, 
+      #{userid,jdbcType=INTEGER}, #{cpu,jdbcType=VARCHAR}, #{memory,jdbcType=VARCHAR}, 
+      #{displaycard,jdbcType=VARCHAR}, #{mainboard,jdbcType=VARCHAR}, #{productyear,jdbcType=VARCHAR}, 
+      #{maxversion,jdbcType=VARCHAR}, #{rayversion,jdbcType=VARCHAR}, #{maxrenderertime,jdbcType=TIME}, 
+      #{maxcreatetime,jdbcType=TIME}, #{aeversion,jdbcType=VARCHAR}, #{aeoutputtime,jdbcType=TIME}, 
+      #{extendinfo,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.laowang.sptest.model.Data">
+    insert into data
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create,
+      </if>
+      <if test="gmtModified != null">
+        gmt_modified,
+      </if>
+      <if test="userid != null">
+        userid,
+      </if>
+      <if test="cpu != null">
+        cpu,
+      </if>
+      <if test="memory != null">
+        memory,
+      </if>
+      <if test="displaycard != null">
+        displayCard,
+      </if>
+      <if test="mainboard != null">
+        mainBoard,
+      </if>
+      <if test="productyear != null">
+        productYear,
+      </if>
+      <if test="maxversion != null">
+        maxVersion,
+      </if>
+      <if test="rayversion != null">
+        rayVersion,
+      </if>
+      <if test="maxrenderertime != null">
+        maxRendererTime,
+      </if>
+      <if test="maxcreatetime != null">
+        maxCreateTime,
+      </if>
+      <if test="aeversion != null">
+        aeVersion,
+      </if>
+      <if test="aeoutputtime != null">
+        aeOutputTime,
+      </if>
+      <if test="extendinfo != null">
+        extendinfo,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="gmtCreate != null">
+        #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null">
+        #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userid != null">
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="cpu != null">
+        #{cpu,jdbcType=VARCHAR},
+      </if>
+      <if test="memory != null">
+        #{memory,jdbcType=VARCHAR},
+      </if>
+      <if test="displaycard != null">
+        #{displaycard,jdbcType=VARCHAR},
+      </if>
+      <if test="mainboard != null">
+        #{mainboard,jdbcType=VARCHAR},
+      </if>
+      <if test="productyear != null">
+        #{productyear,jdbcType=VARCHAR},
+      </if>
+      <if test="maxversion != null">
+        #{maxversion,jdbcType=VARCHAR},
+      </if>
+      <if test="rayversion != null">
+        #{rayversion,jdbcType=VARCHAR},
+      </if>
+      <if test="maxrenderertime != null">
+        #{maxrenderertime,jdbcType=TIME},
+      </if>
+      <if test="maxcreatetime != null">
+        #{maxcreatetime,jdbcType=TIME},
+      </if>
+      <if test="aeversion != null">
+        #{aeversion,jdbcType=VARCHAR},
+      </if>
+      <if test="aeoutputtime != null">
+        #{aeoutputtime,jdbcType=TIME},
+      </if>
+      <if test="extendinfo != null">
+        #{extendinfo,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.laowang.sptest.model.DataExample" resultType="java.lang.Long">
+    select count(*) from data
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update data
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.gmtCreate != null">
+        gmt_create = #{record.gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.gmtModified != null">
+        gmt_modified = #{record.gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.userid != null">
+        userid = #{record.userid,jdbcType=INTEGER},
+      </if>
+      <if test="record.cpu != null">
+        cpu = #{record.cpu,jdbcType=VARCHAR},
+      </if>
+      <if test="record.memory != null">
+        memory = #{record.memory,jdbcType=VARCHAR},
+      </if>
+      <if test="record.displaycard != null">
+        displayCard = #{record.displaycard,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mainboard != null">
+        mainBoard = #{record.mainboard,jdbcType=VARCHAR},
+      </if>
+      <if test="record.productyear != null">
+        productYear = #{record.productyear,jdbcType=VARCHAR},
+      </if>
+      <if test="record.maxversion != null">
+        maxVersion = #{record.maxversion,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rayversion != null">
+        rayVersion = #{record.rayversion,jdbcType=VARCHAR},
+      </if>
+      <if test="record.maxrenderertime != null">
+        maxRendererTime = #{record.maxrenderertime,jdbcType=TIME},
+      </if>
+      <if test="record.maxcreatetime != null">
+        maxCreateTime = #{record.maxcreatetime,jdbcType=TIME},
+      </if>
+      <if test="record.aeversion != null">
+        aeVersion = #{record.aeversion,jdbcType=VARCHAR},
+      </if>
+      <if test="record.aeoutputtime != null">
+        aeOutputTime = #{record.aeoutputtime,jdbcType=TIME},
+      </if>
+      <if test="record.extendinfo != null">
+        extendinfo = #{record.extendinfo,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update data
+    set id = #{record.id,jdbcType=INTEGER},
+      gmt_create = #{record.gmtCreate,jdbcType=TIMESTAMP},
+      gmt_modified = #{record.gmtModified,jdbcType=TIMESTAMP},
+      userid = #{record.userid,jdbcType=INTEGER},
+      cpu = #{record.cpu,jdbcType=VARCHAR},
+      memory = #{record.memory,jdbcType=VARCHAR},
+      displayCard = #{record.displaycard,jdbcType=VARCHAR},
+      mainBoard = #{record.mainboard,jdbcType=VARCHAR},
+      productYear = #{record.productyear,jdbcType=VARCHAR},
+      maxVersion = #{record.maxversion,jdbcType=VARCHAR},
+      rayVersion = #{record.rayversion,jdbcType=VARCHAR},
+      maxRendererTime = #{record.maxrenderertime,jdbcType=TIME},
+      maxCreateTime = #{record.maxcreatetime,jdbcType=TIME},
+      aeVersion = #{record.aeversion,jdbcType=VARCHAR},
+      aeOutputTime = #{record.aeoutputtime,jdbcType=TIME},
+      extendinfo = #{record.extendinfo,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update data
+    set id = #{record.id,jdbcType=INTEGER},
+      gmt_create = #{record.gmtCreate,jdbcType=TIMESTAMP},
+      gmt_modified = #{record.gmtModified,jdbcType=TIMESTAMP},
+      userid = #{record.userid,jdbcType=INTEGER},
+      cpu = #{record.cpu,jdbcType=VARCHAR},
+      memory = #{record.memory,jdbcType=VARCHAR},
+      displayCard = #{record.displaycard,jdbcType=VARCHAR},
+      mainBoard = #{record.mainboard,jdbcType=VARCHAR},
+      productYear = #{record.productyear,jdbcType=VARCHAR},
+      maxVersion = #{record.maxversion,jdbcType=VARCHAR},
+      rayVersion = #{record.rayversion,jdbcType=VARCHAR},
+      maxRendererTime = #{record.maxrenderertime,jdbcType=TIME},
+      maxCreateTime = #{record.maxcreatetime,jdbcType=TIME},
+      aeVersion = #{record.aeversion,jdbcType=VARCHAR},
+      aeOutputTime = #{record.aeoutputtime,jdbcType=TIME}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.laowang.sptest.model.Data">
+    update data
+    <set>
+      <if test="gmtCreate != null">
+        gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null">
+        gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userid != null">
+        userid = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="cpu != null">
+        cpu = #{cpu,jdbcType=VARCHAR},
+      </if>
+      <if test="memory != null">
+        memory = #{memory,jdbcType=VARCHAR},
+      </if>
+      <if test="displaycard != null">
+        displayCard = #{displaycard,jdbcType=VARCHAR},
+      </if>
+      <if test="mainboard != null">
+        mainBoard = #{mainboard,jdbcType=VARCHAR},
+      </if>
+      <if test="productyear != null">
+        productYear = #{productyear,jdbcType=VARCHAR},
+      </if>
+      <if test="maxversion != null">
+        maxVersion = #{maxversion,jdbcType=VARCHAR},
+      </if>
+      <if test="rayversion != null">
+        rayVersion = #{rayversion,jdbcType=VARCHAR},
+      </if>
+      <if test="maxrenderertime != null">
+        maxRendererTime = #{maxrenderertime,jdbcType=TIME},
+      </if>
+      <if test="maxcreatetime != null">
+        maxCreateTime = #{maxcreatetime,jdbcType=TIME},
+      </if>
+      <if test="aeversion != null">
+        aeVersion = #{aeversion,jdbcType=VARCHAR},
+      </if>
+      <if test="aeoutputtime != null">
+        aeOutputTime = #{aeoutputtime,jdbcType=TIME},
+      </if>
+      <if test="extendinfo != null">
+        extendinfo = #{extendinfo,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.laowang.sptest.model.Data">
+    update data
+    set gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      userid = #{userid,jdbcType=INTEGER},
+      cpu = #{cpu,jdbcType=VARCHAR},
+      memory = #{memory,jdbcType=VARCHAR},
+      displayCard = #{displaycard,jdbcType=VARCHAR},
+      mainBoard = #{mainboard,jdbcType=VARCHAR},
+      productYear = #{productyear,jdbcType=VARCHAR},
+      maxVersion = #{maxversion,jdbcType=VARCHAR},
+      rayVersion = #{rayversion,jdbcType=VARCHAR},
+      maxRendererTime = #{maxrenderertime,jdbcType=TIME},
+      maxCreateTime = #{maxcreatetime,jdbcType=TIME},
+      aeVersion = #{aeversion,jdbcType=VARCHAR},
+      aeOutputTime = #{aeoutputtime,jdbcType=TIME},
+      extendinfo = #{extendinfo,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.laowang.sptest.model.Data">
+    update data
+    set gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      userid = #{userid,jdbcType=INTEGER},
+      cpu = #{cpu,jdbcType=VARCHAR},
+      memory = #{memory,jdbcType=VARCHAR},
+      displayCard = #{displaycard,jdbcType=VARCHAR},
+      mainBoard = #{mainboard,jdbcType=VARCHAR},
+      productYear = #{productyear,jdbcType=VARCHAR},
+      maxVersion = #{maxversion,jdbcType=VARCHAR},
+      rayVersion = #{rayversion,jdbcType=VARCHAR},
+      maxRendererTime = #{maxrenderertime,jdbcType=TIME},
+      maxCreateTime = #{maxcreatetime,jdbcType=TIME},
+      aeVersion = #{aeversion,jdbcType=VARCHAR},
+      aeOutputTime = #{aeoutputtime,jdbcType=TIME}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
